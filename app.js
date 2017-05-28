@@ -11,8 +11,8 @@ var express         = require("express"),
 //REQUIRING ROUTES
 var indexRoutes = require("./routes/index");
 
-mongoose.Promise = require("bluebird");
-mongoose.connect(process.env.DATABASEURL);
+// mongoose.Promise = require("bluebird");
+// mongoose.connect(process.env.DATABASEURL);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
