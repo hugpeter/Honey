@@ -1,0 +1,19 @@
+{
+  "name": "honey",
+  "version": "1.0.0",
+  "description": "A small site where users can sign up to put their name on a waiting list to purchase honey products.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hugpeter/Honey.git"
+  },
+  "author": "Peter Willis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hugpeter/Honey/issues"
+  },
+  "homepage": "https://github.com/hugpeter/Honey#readme"
+}
