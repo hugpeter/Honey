@@ -11,8 +11,15 @@ var express         = require("express"),
 //REQUIRING ROUTES
 var indexRoutes = require("./routes/index");
 
-// mongoose.Promise = require("bluebird");
-// mongoose.connect(process.env.DATABASEURL);
+mongoose.Promise = require("bluebird");
+
+//local connection
+//mongoose.connect("mongodb://localhost/mh");
+
+//direct path remote connection
+mongoose.connect("mongodb://hugpeter:james16@ds113650.mlab.com:13650/mh_prd");
+
+//mongoose.connect(process.env.DATABASEURL);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
