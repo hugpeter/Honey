@@ -1,7 +1,8 @@
 var express     = require("express"),
     router      = express.Router({mergeParams: true}),
     passport    = require("passport"),
-    User        = require("../models/user");
+    User        = require("../models/user"),
+    Order       = require("../models/order");
     
 //ROOT ROUTE
 router.get("/", function(req, res){
@@ -15,15 +16,18 @@ router.get("/register", function(req, res) {
 
 //handle sign up logic
 router.post("/register", function(req, res) {
-    var newUser = new User({username: req.body.username});
+    var newUser = new User({
+        username: req.body.username,
+        email: req.body.email
+    });
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             req.flash("error", err.message);    
             return res.redirect("/register");
         }
         passport.authenticate("local")(req, res, function(){
-            req.flash("success", "Welcome to YelpCamp " + user.username);    
-            res.redirect("/campgrounds");     
+            req.flash("success", "Welcome to Mettenburg Honey " + user.firstName);    
+            res.redirect("/");     
         });
     });
 });
@@ -36,7 +40,7 @@ router.get("/login", function(req, res) {
 //handle login logic
 router.post("/login", passport.authenticate("local", 
     {
-        successRedirect: "/campgrounds",
+        successRedirect: "/",
         failureRedirect: "/login"
     }), function(req, res) {
     
@@ -46,7 +50,7 @@ router.post("/login", passport.authenticate("local",
 router.get("/logout", function(req, res) {
    req.logout(); 
    req.flash("success", "Logged you out!");
-   res.redirect("/campgrounds");
+   res.redirect("/");
 });
 
 module.exports = router;
