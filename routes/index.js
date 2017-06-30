@@ -4,9 +4,16 @@ var express     = require("express"),
     User        = require("../models/user"),
     Order       = require("../models/order");
     
-//ROOT ROUTE
+//INDEX - show all orders
 router.get("/", function(req, res){
-   res.render("home"); 
+    //Get all orders from DB
+    Order.find({}, function(err, allOrders){
+       if(err){
+           console.log(err);
+       } else {
+         res.render("home", {orders : allOrders});
+       }
+    });
 });
 
 //show register form
@@ -18,7 +25,9 @@ router.get("/register", function(req, res) {
 router.post("/register", function(req, res) {
     var newUser = new User({
         username: req.body.username,
-        email: req.body.email
+        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName
     });
     User.register(newUser, req.body.password, function(err, user){
         if(err){

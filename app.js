@@ -6,10 +6,12 @@ var express         = require("express"),
     passport        = require("passport"),
     LocalStrategy   = require("passport-local"),
     methodOverride  = require("method-override"),
-    User            = require("./models/user");
+    User            = require("./models/user"),
+    moment          = require("moment");
     
 //REQUIRING ROUTES
 var indexRoutes = require("./routes/index");
+var ordersRoutes = require("./routes/orders");
 
 mongoose.Promise = require("bluebird");
 
@@ -47,11 +49,13 @@ app.use(function(req, res, next){
    res.locals.currentUser = req.user;
    res.locals.error = req.flash("error");
    res.locals.success = req.flash("success");
+   res.locals.moment = moment;
    next();
 });
 
 //DEFINE ROUTES
 app.use("/", indexRoutes);
+app.use("/orders", ordersRoutes);
 
 
 //LISTEN!

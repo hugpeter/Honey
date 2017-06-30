@@ -1,5 +1,44 @@
 <% include partials/header %>
-
-
-
+<div class="container">
+    <div class="row addOrderBtn">
+        <div class="col-xs-12">
+            <a href="/orders/new" type="button" class="btn btn-primary btn-lg">Add your order to the list!</a>
+        </div>
+    </div>
+    
+    <div class="row orderList">
+        <div class="col-xs-12">
+            <% if(orders.length != 0) { %>
+                <table class="table table-hover">
+                    <theader>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>2lb Glass ($14)</th>
+                            <th>1lb Glass ($7)</th>
+                            <th>1lb Plastic ($7)</th>
+                            <th>Total Cost</th>
+                            <th>Email</th>
+                        </tr>
+                    </theader>
+                    <tbody>
+                        <% orders.forEach(function(order){ %>
+                            <tr>
+                                <td> <%= order.customer %> </td>
+                                <td> <%= moment(order.date).format('MM/DD/YYYY') %> </td>
+                                <td> <%= order.num2lbGlass %> </td>
+                                <td> <%= order.num1lbGlass %> </td>
+                                <td> <%= order.num1lbPlastic %> </td>
+                                <td> $<%= order.totalCost.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,") %> </td>
+                                <td> <%= order.email %> </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            <% } %>
+        </div>
+    </div>
+    
+    
+</div>
 <% include partials/footer %>
