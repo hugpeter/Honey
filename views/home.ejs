@@ -1,14 +1,15 @@
 <% include partials/header %>
 <div class="container">
+    
     <div class="row addOrderBtn">
         <div class="col-xs-12">
             <a href="/orders/new" type="button" class="btn btn-primary btn-lg">Add your order to the list!</a>
         </div>
     </div>
     
-    <div class="row orderList">
-        <div class="col-xs-12">
-            <% if(orders.length != 0) { %>
+    <% if(orders.length != 0 && currentUser) { %>
+        <div class="row orderList">
+            <div class="col-xs-12">
                 <table class="table table-hover">
                     <theader>
                         <tr>
@@ -35,10 +36,9 @@
                         <% }); %>
                     </tbody>
                 </table>
-            <% } %>
+            </div>
         </div>
-    </div>
-    
+    <% } %>
     
 </div>
 <% include partials/footer %>
