@@ -1,0 +1,54 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center;">Place a new order</h1>
+        <div style="width: 30%; margin: 40px auto;">
+            <form action="/orders/<%=order._id%>?_method=PUT" method="POST">
+                    <input type="hidden" name="username" value = "<%= order.username %>" >
+                    <input type="hidden" name="email" value = "<%= order.email %>" >
+                <div class="form-group">
+                    <label for="num2lbGlass">2lb Glass Jar ($14 each)</label>
+                    <input class="form-control" type="number" id="num2lbGlass" name="order[num2lbGlass]" value= <%= order.num2lbGlass %> min="0" step="1">
+                </div>
+                <div class="form-group">
+                    <label for="num1lbGlass">1lb Glass Jar ($7 each)</label>
+                    <input class="form-control" type="number" id="num1lbGlass" name="order[num1lbGlass]" value= <%= order.num1lbGlass %> min="0" step="1">
+                </div>
+                <div class="form-group">
+                    <label for="num1lbPlastic">1lb Plastic Jar ($7 each)</label>
+                    <input class="form-control" type="number" id="num1lbPlastic" name="order[num1lbPlastic]" value= <%= order.num1lbPlastic %> min="0" step="1">
+                </div>
+                
+                <% if(currentUser.username == "douglas_mettenburg@yahoo.com" || currentUser.username == "peter") { %>
+                    <div class="form-group">
+                        <label for="paid">Paid?</label>
+                        <% if(order.paid) {%>
+                            <input class="form-control" type="checkbox" id="paid" name="order[paid]" checked="checked">
+                        <% } else { %>
+                            <input class="form-control" type="checkbox" id="paid" name="order[paid]" >
+                        <% } %>
+                    </div>
+                    <div class="form-group">
+                        <label for="delivered">Delivered?</label>
+                        <% if(order.delivered) {%>
+                            <input class="form-control" type="checkbox" id="delivered" name="order[delivered]" checked="checked">
+                        <% } else { %>
+                            <input class="form-control" type="checkbox" id="delivered" name="order[delivered]">
+                        <% } %>
+                    </div>
+                <% } %>
+                
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+            <a href="/">Go Back</a>
+            <form style="float: right;" id="delete-form" action="/orders/<%=order._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-xs btn-danger">Remove Order</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>
