@@ -13,7 +13,7 @@ router.get("/", function(req, res){
        } else {
          res.render("home", {orders : allOrders});
        }
-    });
+    }).sort({ date: 1 });
 });
 
 //show register form

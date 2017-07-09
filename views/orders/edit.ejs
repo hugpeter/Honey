@@ -23,29 +23,41 @@
                 <% if(currentUser.username == "douglas_mettenburg@yahoo.com" || currentUser.username == "peter") { %>
                     <div class="form-group">
                         <label for="paid">Paid?</label>
-                        <% if(order.paid) {%>
-                            <input class="form-control" type="checkbox" id="paid" name="order[paid]" checked="checked">
+                        <% if(order.paid == "True") {%>
+                            <select id="paid" name="order[paid]">
+                                <option value="True" selected="selected">True</option>
+                                <option value="False">False</option>
+                            </select>
                         <% } else { %>
-                            <input class="form-control" type="checkbox" id="paid" name="order[paid]" >
+                            <select id="paid" name="order[paid]">
+                                <option value="True">True</option>
+                                <option value="False" selected="selected">False</option>
+                            </select>
                         <% } %>
                     </div>
                     <div class="form-group">
                         <label for="delivered">Delivered?</label>
-                        <% if(order.delivered) {%>
-                            <input class="form-control" type="checkbox" id="delivered" name="order[delivered]" checked="checked">
+                        <% if(order.delivered == "True") {%>
+                            <select id="delivered" name="order[delivered]">
+                                <option value="True" selected="selected">True</option>
+                                <option value="False">False</option>
+                            </select>
                         <% } else { %>
-                            <input class="form-control" type="checkbox" id="delivered" name="order[delivered]">
+                            <select id="delivered" name="order[delivered]">
+                                <option value="True">True</option>
+                                <option value="False" selected="selected">False</option>
+                            </select>
                         <% } %>
                     </div>
                 <% } %>
                 
                 <div class="form-group">
-                    <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                    <button class="btn btn-lg btn-primary btn-block">Update Order</button>
                 </div>
             </form>
             <a href="/">Go Back</a>
             <form style="float: right;" id="delete-form" action="/orders/<%=order._id%>?_method=DELETE" method="POST">
-                <button class="btn btn-xs btn-danger">Remove Order</button>
+                <button class="btn btn-xs btn-danger">Delete Order</button>
             </form>
         </div>
     </div>

@@ -30,26 +30,26 @@
                             <tr>
                                 <td> <%= order.customer %> </td>
                                 <td> <%= moment(order.date).format('MM/DD/YYYY') %> </td>
-                                <td> <%= order.num2lbGlass %> </td>
-                                <td> <%= order.num1lbGlass %> </td>
-                                <td> <%= order.num1lbPlastic %> </td>
+                                <td class="cTxt"> <%= order.num2lbGlass %> </td>
+                                <td class="cTxt"> <%= order.num1lbGlass %> </td>
+                                <td class="cTxt"> <%= order.num1lbPlastic %> </td>
                                 <td> $<%= order.totalCost.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,") %> </td>
                                 <td> <%= order.email %> </td>
-                                <td>
-                                    <% if(order.paid) { %>
+                                <td class="cTxt">
+                                    <% if(order.paid == "True") { %>
                                         <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                                     <% } else { %>
                                         <i class="fa fa-thumbs-down" aria-hidden="true"></i>
                                     <% } %>
                                 </td>
-                                <td>
-                                    <% if(order.delivered) { %>
+                                <td class="cTxt">
+                                    <% if(order.delivered == "True") { %>
                                         <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                                     <% } else { %>
                                         <i class="fa fa-thumbs-down" aria-hidden="true"></i>
                                     <% } %>
                                 </td>
-                                <td>
+                                <td class="cTxt">
                                     <% if(order.customer == currentUser.firstName + " " + currentUser.lastName || currentUser.username === "douglas_mettenburg@yahoo.com" || currentUser.username == "peter") { %>
                                         <a href="/orders/<%=order._id%>/edit"  type="button" class="fa fa-pencil-square-o" aria-hidden="true"></a>
                                     <% } %>

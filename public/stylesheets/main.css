@@ -6,3 +6,8 @@
 input{
     width: 100%;
 }
+
+.cTxt,
+th{
+    text-align: center;
+}
