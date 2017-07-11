@@ -4,20 +4,21 @@
     <div class="row">
         <h1 style="text-align: center;">Place a new order</h1>
         <div style="width: 30%; margin: 40px auto;">
-            <form action="/orders/<%=order._id%>?_method=PUT" method="POST">
+            <form id="orderForm" action="/orders/<%=order._id%>?_method=PUT" method="POST">
                     <input type="hidden" name="username" value = "<%= order.username %>" >
                     <input type="hidden" name="email" value = "<%= order.email %>" >
+                    <input type="hidden" id="totalCost" name="order[totalCost]" value="<%= order.totalCost %>">
                 <div class="form-group">
                     <label for="num2lbGlass">2lb Glass Jar ($14 each)</label>
-                    <input class="form-control" type="number" id="num2lbGlass" name="order[num2lbGlass]" value= <%= order.num2lbGlass %> min="0" step="1">
+                    <input class="form-control" type="number" id="num2lbGlass" name="order[num2lbGlass]" value="<%= order.num2lbGlass %>" min="0" step="1">
                 </div>
                 <div class="form-group">
                     <label for="num1lbGlass">1lb Glass Jar ($7 each)</label>
-                    <input class="form-control" type="number" id="num1lbGlass" name="order[num1lbGlass]" value= <%= order.num1lbGlass %> min="0" step="1">
+                    <input class="form-control" type="number" id="num1lbGlass" name="order[num1lbGlass]" value="<%= order.num1lbGlass %>" min="0" step="1">
                 </div>
                 <div class="form-group">
                     <label for="num1lbPlastic">1lb Plastic Jar ($7 each)</label>
-                    <input class="form-control" type="number" id="num1lbPlastic" name="order[num1lbPlastic]" value= <%= order.num1lbPlastic %> min="0" step="1">
+                    <input class="form-control" type="number" id="num1lbPlastic" name="order[num1lbPlastic]" value="<%= order.num1lbPlastic %>" min="0" step="1">
                 </div>
                 
                 <% if(currentUser.username == "douglas_mettenburg@yahoo.com" || currentUser.username == "peter") { %>
@@ -62,5 +63,17 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('#num2lbGlass').add('#num1lbGlass').add('#num1lbPlastic').on('input', function() {
+            var n2g = $('#num2lbGlass').val();
+            var n1g = $('#num1lbGlass').val();
+            var n1p = $('#num1lbPlastic').val();
+            
+            $('#totalCost').val(n2g*14 + n1g*7 + n1p*7);
+        });
+    });
+</script>
 
 <% include ../partials/footer %>
